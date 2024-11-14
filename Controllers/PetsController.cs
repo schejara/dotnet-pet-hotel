@@ -26,6 +26,25 @@ namespace pet_hotel.Controllers
             return new List<Pet>();
         }
 
+        [HttpGet]
+        public IEnumerable<Pet> GetPet() 
+        {
+            return _context.Pets
+                .Include(pet => pet.petOwnerid);
+        }
+        [HttpGet("{id}")]
+        public ActionResult<Pet> GetById(int id) {
+             Pet pet =  _context.Pets
+                .SingleOrDefault(pet => pet.id == id);
+            
+            if(pet is null) {
+                return NotFound();
+            }
+
+            return pet;
+        }
+
+
         // [HttpGet]
         // [Route("test")]
         // public IEnumerable<Pet> GetPets() {
@@ -49,5 +68,8 @@ namespace pet_hotel.Controllers
 
         //     return new List<Pet>{ newPet1, newPet2};
         // }
-    }
+    };
+    
+       
+
 }
