@@ -12,9 +12,15 @@ namespace pet_hotel
         public string Name { get; set; }
         [Required]
         public string EmailAddress { get; set; }
-        [NotMapped]
-        public List<Pet> Pets { get; set; }
-
-        public int PetCount => Pets.Count;
+        [JsonIgnore]
+        public List<Pet> Pets { get; set; } = new List<Pet>();
+        [NotMapped] 
+        public int PetCount
+        {
+            get
+            {
+                return Pets?.Count ?? 0;  
+            }
+        }
     }
 }
