@@ -7,19 +7,19 @@ namespace pet_hotel
 {
     public class PetOwner
     {
-        public int Id { get; set; }
+        public int id { get; set; }
         [Required]
-        public string Name { get; set; }
+        public string name { get; set; }
         [Required]
-        public string EmailAddress { get; set; }
+        public string emailAddress { get; set; }
         [JsonIgnore]
-        public List<Pet> Pets { get; set; } = new List<Pet>();
+        public List<Pet> pets { get; set; } = new List<Pet>();
         [NotMapped] 
-        public int PetCount
+        public int petCount
         {
             get
             {
-                return Pets?.Count ?? 0;  
+                return pets?.Count ?? 0;  
             }
         }
     }

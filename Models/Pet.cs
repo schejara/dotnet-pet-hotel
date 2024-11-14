@@ -40,10 +40,10 @@ namespace pet_hotel
 
         [JsonConverter(typeof(JsonStringEnumConverter))]
 
-        public PetBreedType BreedType { get; set; }
+        public PetBreedType breed { get; set; }
 
         [JsonConverter(typeof(JsonStringEnumConverter))]
-        public PetColorType ColorType { get; set; }
+        public PetColorType color { get; set; }
     }
 }
 

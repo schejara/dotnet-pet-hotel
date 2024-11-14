@@ -11,14 +11,14 @@ namespace pet_hotel.Migrations
                 name: "PetOwners",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "integer", nullable: false)
+                    id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Name = table.Column<string>(type: "text", nullable: false),
-                    EmailAddress = table.Column<string>(type: "text", nullable: false)
+                    name = table.Column<string>(type: "text", nullable: false),
+                    emailAddress = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PetOwners", x => x.Id);
+                    table.PrimaryKey("PK_PetOwners", x => x.id);
                 });
 
             migrationBuilder.CreateTable(
@@ -30,8 +30,8 @@ namespace pet_hotel.Migrations
                     name = table.Column<string>(type: "text", nullable: true),
                     petOwnerid = table.Column<int>(type: "integer", nullable: false),
                     checkedInAt = table.Column<int>(type: "integer", nullable: false),
-                    BreedType = table.Column<byte>(type: "smallint", nullable: false),
-                    ColorType = table.Column<byte>(type: "smallint", nullable: false)
+                    breed = table.Column<byte>(type: "smallint", nullable: false),
+                    color = table.Column<byte>(type: "smallint", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -40,7 +40,7 @@ namespace pet_hotel.Migrations
                         name: "FK_Pets_PetOwners_petOwnerid",
                         column: x => x.petOwnerid,
                         principalTable: "PetOwners",
-                        principalColumn: "Id",
+                        principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
                 });
 

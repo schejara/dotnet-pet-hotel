@@ -30,7 +30,7 @@ namespace pet_hotel.Controllers
         public ActionResult<PetOwner> GetById(int id)
         {
             PetOwner petOwner = _context.PetOwners
-                .SingleOrDefault(petOwner => petOwner.Id == id);
+                .SingleOrDefault(petOwner => petOwner.id == id);
 
             // Return a `404 Not Found` if the baker doesn't exist
             if (petOwner is null)
@@ -66,7 +66,7 @@ namespace pet_hotel.Controllers
         [HttpPut("{id}")]
         public PetOwner Put(int id, PetOwner petOwner)
         {
-            petOwner.Id = id;
+            petOwner.id = id;
             _context.Update(petOwner);
             _context.SaveChanges();
 
