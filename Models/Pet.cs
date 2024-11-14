@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System;
 using System.Collections.Generic;
 
-namespace pet_hotel.Models
+namespace pet_hotel
 {
     public enum PetBreedType : byte
     {
@@ -15,19 +15,24 @@ namespace pet_hotel.Models
 
          black 
     }
-    public class Pet {
+    
 
-        public int id {get; set;}
-         public string name {get; set;}
-         [ForeignKey("petOwnerid")]
-          public int petOwnerid  {get; set;}
-          [JsonConverter(typeof(JsonStringEnumConverter))] 
-         public int checkedInAt {get; set;}
+        public class Pet
+    {
 
-         public string PetBreedType {get; set;}
+        public int id { get; set; }
+        public string name { get; set; }
+        [ForeignKey("petOwner")]
+        public int petOwnerid { get; set; }
+        public PetOwner petOwner { get; set; }
+        public int checkedInAt { get; set; }
 
-         public string PetColorType {get; set;}
+        [JsonConverter(typeof(JsonStringEnumConverter))]
 
+        public PetBreedType BreedType { get; set; }
 
+        [JsonConverter(typeof(JsonStringEnumConverter))]
+        public PetColorType ColorType { get; set; }
     }
-}
+    }
+
