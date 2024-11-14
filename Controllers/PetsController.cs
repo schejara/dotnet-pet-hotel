@@ -44,6 +44,45 @@ namespace pet_hotel.Controllers
             return pet;
         }
 
+        [HttpPost]
+        public Pet Post(Pet pet) 
+        {
+            // Tell the DB context about our new bread object
+            _context.Add(pet);
+            // ...and save the bread object to the database
+            _context.SaveChanges();
+
+            // Respond back with the created bread object
+            return pet;
+        }
+
+        [HttpPut("{id}")]
+        public Pet Put(int id,Pet pet)
+        {
+            pet.id = id;
+            _context.Update(pet);
+            _context.SaveChanges();
+
+            return pet;
+        }
+       
+
+       [HttpDelete("{id}")]
+        public void Delete(int id)
+        {
+            Pet pet = _context.Pets.Find(id);
+
+            _context.Pets.Remove(pet);
+
+            _context.SaveChanges();
+        }
+    }
+
+
+
+
+
+
 
         // [HttpGet]
         // [Route("test")]
@@ -72,4 +111,4 @@ namespace pet_hotel.Controllers
     
        
 
-}
+
