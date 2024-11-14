@@ -22,5 +22,19 @@ namespace pet_hotel.Controllers
         public IEnumerable<PetOwner> GetPets() {
             return new List<PetOwner>();
         }
+
+        // GET by id
+
+
+        // POST
+
+
+        // DELETE by id
+
+
+        // PUT by id
+
+
+        
     }
 }
