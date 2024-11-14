@@ -29,7 +29,7 @@ namespace pet_hotel.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     name = table.Column<string>(type: "text", nullable: true),
                     petOwnerid = table.Column<int>(type: "integer", nullable: false),
-                    checkedInAt = table.Column<int>(type: "integer", nullable: false),
+                    checkedInAt = table.Column<int>(type: "integer", nullable: true),
                     breed = table.Column<byte>(type: "smallint", nullable: false),
                     color = table.Column<byte>(type: "smallint", nullable: false)
                 },

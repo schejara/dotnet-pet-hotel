@@ -42,12 +42,23 @@ namespace pet_hotel.Controllers
         }
 
         [HttpPost]
-        public Pet Post(Pet pet)
+        public IActionResult Post(Pet pet)
         {
+            if (pet == null)
+            {
+                return BadRequest();
+            }
+
+            // Add the new pet to the database
             _context.Add(pet);
             _context.SaveChanges();
 
-            return pet;
+            // Return a 201 Created status with the location of the new resource
+            return CreatedAtAction(
+                nameof(GetById),  // Action to get the created Pet by its ID
+                new { id = pet.id },  // Route parameter for getting the created Pet
+                pet  // The created Pet object in the response body
+            );
         }
 
         [HttpPut("{id}")]
@@ -62,13 +73,15 @@ namespace pet_hotel.Controllers
 
 
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id)
         {
             Pet pet = _context.Pets.Find(id);
 
             _context.Pets.Remove(pet);
 
             _context.SaveChanges();
+
+            return NoContent();
         }
     }
 };

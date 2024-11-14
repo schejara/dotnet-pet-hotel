@@ -43,23 +43,29 @@ namespace pet_hotel.Controllers
 
         // POST
         [HttpPost]
-        public PetOwner Post(PetOwner petOwner)
+        public IActionResult Post(PetOwner petOwner)
         {
             _context.Add(petOwner);
             _context.SaveChanges();
 
-            return petOwner;
+            return CreatedAtAction(
+                nameof(GetById),
+                new { id = petOwner.id },
+                petOwner
+            );
         }
 
         // DELETE by id
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id)
         {
             PetOwner petOwner = _context.PetOwners.Find(id);
 
             _context.PetOwners.Remove(petOwner);
 
             _context.SaveChanges();
+            return NoContent();
+
         }
 
         // PUT by id

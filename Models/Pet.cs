@@ -36,7 +36,7 @@ namespace pet_hotel
         [ForeignKey("petOwner")]
         public int petOwnerid { get; set; }
         public PetOwner petOwner { get; set; }
-        public int checkedInAt { get; set; }
+        public int? checkedInAt { get; set; }
 
         [JsonConverter(typeof(JsonStringEnumConverter))]
 
