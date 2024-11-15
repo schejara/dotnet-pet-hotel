@@ -70,10 +70,10 @@ namespace pet_hotel.Controllers
         }
 
         [HttpPut("{id}/checkin")]
-        public Pet Checkin(int id, Pet pet)
+        public Pet Checkin(int id)
         {
-            pet.id = id;
-            pet.checkedInAt = "2020-07-21T03:35:23.880902Z";
+            Pet pet = _context.Pets.Find(id);
+            pet.checkedInAt = DateTime.Now.ToString();
             _context.Update(pet);
             _context.SaveChanges();
 
@@ -81,9 +81,9 @@ namespace pet_hotel.Controllers
         }
 
         [HttpPut("{id}/checkout")]
-        public Pet Checkout(int id, Pet pet)
+        public Pet Checkout(int id)
         {
-            pet.id = id;
+            Pet pet = _context.Pets.Find(id);
             pet.checkedInAt = null;
             _context.Update(pet);
             _context.SaveChanges();
