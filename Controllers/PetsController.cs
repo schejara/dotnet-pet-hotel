@@ -49,15 +49,13 @@ namespace pet_hotel.Controllers
                 return BadRequest();
             }
 
-            // Add the new pet to the database
             _context.Add(pet);
             _context.SaveChanges();
 
-            // Return a 201 Created status with the location of the new resource
             return CreatedAtAction(
-                nameof(GetById),  // Action to get the created Pet by its ID
-                new { id = pet.id },  // Route parameter for getting the created Pet
-                pet  // The created Pet object in the response body
+                nameof(GetById),
+                new { id = pet.id },
+                pet
             );
         }
 
@@ -70,6 +68,29 @@ namespace pet_hotel.Controllers
 
             return pet;
         }
+
+        [HttpPut("{id}/checkin")]
+        public Pet Checkin(int id, Pet pet)
+        {
+            pet.id = id;
+            pet.checkedInAt = "2020-07-21T03:35:23.880902Z";
+            _context.Update(pet);
+            _context.SaveChanges();
+
+            return pet;
+        }
+
+        [HttpPut("{id}/checkout")]
+        public Pet Checkout(int id, Pet pet)
+        {
+            pet.id = id;
+            pet.checkedInAt = null;
+            _context.Update(pet);
+            _context.SaveChanges();
+
+            return pet;
+        }
+
 
 
         [HttpDelete("{id}")]
